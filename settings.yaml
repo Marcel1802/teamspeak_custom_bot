@@ -1,0 +1,16 @@
+general_ip: 127.0.0.1
+general_loginname: MarcelsCustomBot
+general_loginpassword: GKDXRilF
+general_displayname: MarcelsBot
+
+moveDefault_enabled: true
+moveDefault_defaultChannelID: 1
+moveDefault_AFKChannelID: 2
+moveDefault_moveTime: 30
+moveDefault_mode: 1
+moveDefault_message: Du wurdest aufgrund von Inaktivität in den AFK-Channel gemoved.
+
+notifyComplaints_enabled: true
+notifyComplaints_adminGroup: 6
+notifyComplaints_mode: 1
+notifyComplaints_message: Es gibt Einträge auf der Beschwerdeliste!
