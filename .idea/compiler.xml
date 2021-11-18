@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="teamspeak_custom_bot" />
+        <module name="custom-teamspeak-bot" />
         <module name="teamspeak-bot" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="teamspeak_custom_bot" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
