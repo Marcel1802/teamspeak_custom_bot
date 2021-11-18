@@ -42,7 +42,7 @@ public class init {
             try {
                 api.setNickname(settingsObj.getGeneral_displayname());
             } catch (Exception ex) {
-                //
+                //todo
             }
 
             api.moveQuery(settingsObj.getGeneral_joinChannel());
@@ -57,9 +57,8 @@ public class init {
                     if (settingsObj.isMoveDefault_enabled()) {
                         moveDefault_list.add(e.getClientId());
                         new Thread(() -> {
-                            long sleepTime = 1000L * settingsObj.getMoveDefault_moveTime();
                             try {
-                                Thread.sleep(sleepTime);
+                                Thread.sleep(1000L * settingsObj.getMoveDefault_moveTime());
                                 if (moveDefault_list.contains(e.getClientId()) && api.getClientInfo(e.getClientId()).getChannelId() == settingsObj.getMoveDefault_defaultChannelID()) {
                                     api.moveClient(e.getClientId(), settingsObj.getMoveDefault_AFKChannelID());
                                     if (settingsObj.getMoveDefault_mode() == 1) {
@@ -102,10 +101,8 @@ public class init {
                             moveDefault_list.remove(e.getClientId());
                     }
                 }
-
             });
         }
-
     }
 
     public static settingsAsClass loadSettings() {
@@ -118,6 +115,4 @@ public class init {
             return null;
         }
     }
-
-
 }

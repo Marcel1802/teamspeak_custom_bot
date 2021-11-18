@@ -169,6 +169,7 @@ public class settingsAsClass {
                 ", general_loginname='" + general_loginname + '\'' +
                 ", general_loginpassword='" + general_loginpassword + '\'' +
                 ", general_displayname='" + general_displayname + '\'' +
+                ", general_joinChannel=" + general_joinChannel +
                 ", moveDefault_enabled=" + moveDefault_enabled +
                 ", moveDefault_defaultChannelID=" + moveDefault_defaultChannelID +
                 ", moveDefault_AFKChannelID=" + moveDefault_AFKChannelID +
