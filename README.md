@@ -23,4 +23,4 @@
 
 > moveDefault_mode: Possible modes: 0 = no notification, 1 = message, 2 = poke
 
-> notifyComplaints_mode: Possbile modes: 1 = message, 2 = poke
+> notifyComplaints_mode: Possible modes: 1 = message, 2 = poke
