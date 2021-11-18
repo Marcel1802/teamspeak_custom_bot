@@ -7,6 +7,7 @@ public class settingsAsClass {
     private String  general_loginname;
     private String  general_loginpassword;
     private String  general_displayname;
+    private int     general_joinChannel;
 
     private boolean moveDefault_enabled;
     private int     moveDefault_defaultChannelID;
@@ -22,11 +23,12 @@ public class settingsAsClass {
 
     public settingsAsClass() {}
 
-    public settingsAsClass(String general_ip, String general_loginname, String general_loginpassword, String general_displayname, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message) {
+    public settingsAsClass(String general_ip, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message) {
         this.general_ip = general_ip;
         this.general_loginname = general_loginname;
         this.general_loginpassword = general_loginpassword;
         this.general_displayname = general_displayname;
+        this.general_joinChannel = general_joinChannel;
         this.moveDefault_enabled = moveDefault_enabled;
         this.moveDefault_defaultChannelID = moveDefault_defaultChannelID;
         this.moveDefault_AFKChannelID = moveDefault_AFKChannelID;
@@ -39,6 +41,14 @@ public class settingsAsClass {
         this.notifyComplaints_message = notifyComplaints_message;
     }
 
+
+    public int getGeneral_joinChannel() {
+        return general_joinChannel;
+    }
+
+    public void setGeneral_joinChannel(int general_joinChannel) {
+        this.general_joinChannel = general_joinChannel;
+    }
 
     public String getGeneral_ip() {
         return general_ip;

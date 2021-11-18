@@ -45,6 +45,8 @@ public class init {
                 //
             }
 
+            api.moveQuery(settingsObj.getGeneral_joinChannel());
+
             Set<Integer> moveDefault_list = new HashSet<>();
 
             api.registerEvent(TS3EventType.SERVER);
