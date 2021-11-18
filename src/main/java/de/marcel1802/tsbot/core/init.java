@@ -69,6 +69,7 @@ public class init {
                                         } else if (settingsObj.getMoveDefault_mode() == 2) {
                                             api.pokeClient(e.getClientId(), settingsObj.getMoveDefault_message());
                                         }
+                                        moveDefault_list.remove(e.getClientId());
                                     }
                                 } catch (Exception ex) {
                                 }
