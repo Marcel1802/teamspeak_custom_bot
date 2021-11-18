@@ -56,23 +56,21 @@ public class init {
                 public void onClientJoin(ClientJoinEvent e) {
                     if (settingsObj.isMoveDefault_enabled()) {
                         moveDefault_list.add(e.getClientId());
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                long sleepTime = 1000 * settingsObj.getMoveDefault_moveTime();
-                                try {
-                                    Thread.sleep(sleepTime);
-                                    if (moveDefault_list.contains(e.getClientId()) && api.getClientInfo(e.getClientId()).getChannelId() == settingsObj.getMoveDefault_defaultChannelID()) {
-                                        api.moveClient(e.getClientId(), settingsObj.getMoveDefault_AFKChannelID());
-                                        if (settingsObj.getMoveDefault_mode() == 1) {
-                                            api.sendPrivateMessage(e.getClientId(), settingsObj.getMoveDefault_message());
-                                        } else if (settingsObj.getMoveDefault_mode() == 2) {
-                                            api.pokeClient(e.getClientId(), settingsObj.getMoveDefault_message());
-                                        }
-                                        moveDefault_list.remove(e.getClientId());
+                        new Thread(() -> {
+                            long sleepTime = 1000L * settingsObj.getMoveDefault_moveTime();
+                            try {
+                                Thread.sleep(sleepTime);
+                                if (moveDefault_list.contains(e.getClientId()) && api.getClientInfo(e.getClientId()).getChannelId() == settingsObj.getMoveDefault_defaultChannelID()) {
+                                    api.moveClient(e.getClientId(), settingsObj.getMoveDefault_AFKChannelID());
+                                    if (settingsObj.getMoveDefault_mode() == 1) {
+                                        api.sendPrivateMessage(e.getClientId(), settingsObj.getMoveDefault_message());
+                                    } else if (settingsObj.getMoveDefault_mode() == 2) {
+                                        api.pokeClient(e.getClientId(), settingsObj.getMoveDefault_message());
                                     }
-                                } catch (Exception ex) {
+                                    moveDefault_list.remove(e.getClientId());
                                 }
+                            } catch (Exception ex) {
+                                // todo
                             }
                         }).start();
                     }
@@ -114,8 +112,7 @@ public class init {
         try {
             File file = new File("settings.yaml");
             ObjectMapper om = new ObjectMapper(new YAMLFactory());
-            settingsAsClass settings = om.readValue(file, settingsAsClass.class);
-            return settings;
+            return om.readValue(file, settingsAsClass.class);
         }
         catch(Exception ex) {
             return null;
