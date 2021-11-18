@@ -45,9 +45,7 @@ public class init {
                 //
             }
 
-            final int clientId = api.whoAmI().getId();
-
-            Set<Integer> moveDefault_list = new HashSet<Integer>();
+            Set<Integer> moveDefault_list = new HashSet<>();
 
             api.registerEvent(TS3EventType.SERVER);
             api.addTS3Listeners(new TS3EventAdapter() {
@@ -93,19 +91,15 @@ public class init {
 
                 @Override
                 public void onClientLeave(ClientLeaveEvent e) {
-                    if (settingsObj.isMoveDefault_enabled()) {
-                        if (moveDefault_list.contains(e.getClientId())) {
-                            moveDefault_list.remove(e.getClientId());
-                        }
+                    if (settingsObj.isMoveDefault_enabled() && moveDefault_list.contains(e.getClientId())) {
+                        moveDefault_list.remove(e.getClientId());
                     }
                 }
 
                 @Override
                 public void onClientMoved(ClientMovedEvent e) {
-                    if (settingsObj.isMoveDefault_enabled()) {
-                        if (moveDefault_list.contains(e.getClientId())) {
+                    if (settingsObj.isMoveDefault_enabled() && moveDefault_list.contains(e.getClientId())) {
                             moveDefault_list.remove(e.getClientId());
-                        }
                     }
                 }
 
