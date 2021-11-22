@@ -1,5 +1,6 @@
 package de.marcel1802.tsbot.core;
 
+
 public class settingsAsClass {
 
 
@@ -21,9 +22,12 @@ public class settingsAsClass {
     private int     notifyComplaints_mode;
     private String  notifyComplaints_message;
 
+    private boolean defaultNicknameCheck_enabled;
+    private String  defaultNicknameCheck_message;
+
     public settingsAsClass() {}
 
-    public settingsAsClass(String general_ip, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message) {
+    public settingsAsClass(String general_ip, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, String defaultNicknameCheck_message) {
         this.general_ip = general_ip;
         this.general_loginname = general_loginname;
         this.general_loginpassword = general_loginpassword;
@@ -39,6 +43,8 @@ public class settingsAsClass {
         this.notifyComplaints_adminGroup = notifyComplaints_adminGroup;
         this.notifyComplaints_mode = notifyComplaints_mode;
         this.notifyComplaints_message = notifyComplaints_message;
+        this.defaultNicknameCheck_enabled = defaultNicknameCheck_enabled;
+        this.defaultNicknameCheck_message = defaultNicknameCheck_message;
     }
 
 
@@ -162,6 +168,23 @@ public class settingsAsClass {
         this.notifyComplaints_message = notifyComplaints_message;
     }
 
+
+    public boolean isDefaultNicknameCheck_enabled() {
+        return defaultNicknameCheck_enabled;
+    }
+
+    public void setDefaultNicknameCheck_enabled(boolean defaultNicknameCheck_enabled) {
+        this.defaultNicknameCheck_enabled = defaultNicknameCheck_enabled;
+    }
+
+    public String getDefaultNicknameCheck_message() {
+        return defaultNicknameCheck_message;
+    }
+
+    public void setDefaultNicknameCheck_message(String defaultNicknameCheck_message) {
+        this.defaultNicknameCheck_message = defaultNicknameCheck_message;
+    }
+
     @Override
     public String toString() {
         return "settingsAsClass{" +
@@ -180,6 +203,8 @@ public class settingsAsClass {
                 ", notifyComplaints_adminGroup=" + notifyComplaints_adminGroup +
                 ", notifyComplaints_mode=" + notifyComplaints_mode +
                 ", notifyComplaints_message='" + notifyComplaints_message + '\'' +
+                ", defaultNicknameCheck_enabled=" + defaultNicknameCheck_enabled +
+                ", defaultNicknameCheck_message='" + defaultNicknameCheck_message + '\'' +
                 '}';
     }
 }

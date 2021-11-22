@@ -19,6 +19,19 @@
     notifyComplaints_mode: 1
     notifyComplaints_message: There are entries on the complaints list!
 
+    defaultNicknameCheck_enabled: true
+    defaultNicknameCheck_message: Please don't use the default name, choose another one.
+
+## Modules
+
+moveDefault: Moves a client after a specific time if the user is idling in the default channel
+
+notifyComplaints: Notifies admins after joining if there are entries on the complaints list
+
+defaultNicknameCheck: Notifies a user if the name is equals "TeamSpeakUser"
+
+## Some setting explainations
+
 > general_joinChannel: Channel the bot goes into after joining
 
 > moveDefault_mode: Possible modes: 0 = no notification, 1 = message, 2 = poke
