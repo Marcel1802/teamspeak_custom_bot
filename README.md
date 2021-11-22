@@ -20,6 +20,7 @@
     notifyComplaints_message: There are entries on the complaints list!
 
     defaultNicknameCheck_enabled: true
+    defaultNicknameCheck_mode: 1
     defaultNicknameCheck_message: Please don't use the default name, choose another one.
 
 ## Modules
@@ -37,3 +38,5 @@ defaultNicknameCheck: Notifies a user if the name is equals "TeamSpeakUser"
 > moveDefault_mode: Possible modes: 0 = no notification, 1 = message, 2 = poke
 
 > notifyComplaints_mode: Possible modes: 1 = message, 2 = poke
+
+> defaultNicknameCheck_mode: Possible modes: 1 = message, 2 = poke

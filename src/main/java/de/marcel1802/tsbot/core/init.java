@@ -89,7 +89,12 @@ public class init {
 
                     if (settingsObj.isDefaultNicknameCheck_enabled()) {
                         if (e.getClientNickname().equals("TeamSpeakUser")) {
-                            api.pokeClient(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
+                            if (settingsObj.getDefaultNicknameCheck_mode() == 1) {
+                                api.sendPrivateMessage(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
+                            }
+                            else {
+                                api.pokeClient(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
+                            }
                         }
                     }
                 }
