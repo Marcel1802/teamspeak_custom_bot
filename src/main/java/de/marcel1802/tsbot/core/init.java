@@ -83,9 +83,6 @@ public class init {
                                 } else if (settingsObj.getNotifyComplaints_mode() == 2) {
                                     api.pokeClient(e.getClientId(), settingsObj.getNotifyComplaints_message());
                                 }
-                                else if (settingsObj.getNotifyComplaints_mode() == 3) {
-                                    api.kickClientFromServer(settingsObj.getDefaultNicknameCheck_message(), e.getClientId());
-                                }
                             }
                         }
                     }
@@ -95,8 +92,11 @@ public class init {
                             if (settingsObj.getDefaultNicknameCheck_mode() == 1) {
                                 api.sendPrivateMessage(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
                             }
-                            else {
+                            else if (settingsObj.getDefaultNicknameCheck_mode() == 2) {
                                 api.pokeClient(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
+                            }
+                            else {
+                                api.kickClientFromServer(settingsObj.getDefaultNicknameCheck_message(), e.getClientId());
                             }
                         }
                     }
