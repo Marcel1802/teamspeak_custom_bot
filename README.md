@@ -37,6 +37,8 @@ defaultNicknameCheck: Notifies a user if the name is equals "TeamSpeakUser"
 
 > moveDefault_mode: Possible modes: 0 = no notification, 1 = message, 2 = poke
 
+> moveDefault_moveTime: Time after the client gets moved from the default channel into the AFK channel (in seconds)
+
 > notifyComplaints_mode: Possible modes: 1 = message, 2 = poke
 
-> defaultNicknameCheck_mode: Possible modes: 1 = message, 2 = poke
+> defaultNicknameCheck_mode: Possible modes: 1 = message, 2 = poke, 3 = kick

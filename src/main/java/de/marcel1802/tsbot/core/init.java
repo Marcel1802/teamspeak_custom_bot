@@ -83,12 +83,15 @@ public class init {
                                 } else if (settingsObj.getNotifyComplaints_mode() == 2) {
                                     api.pokeClient(e.getClientId(), settingsObj.getNotifyComplaints_message());
                                 }
+                                else if (settingsObj.getNotifyComplaints_mode() == 3) {
+                                    api.kickClientFromServer(settingsObj.getDefaultNicknameCheck_message(), e.getClientId());
+                                }
                             }
                         }
                     }
 
                     if (settingsObj.isDefaultNicknameCheck_enabled()) {
-                        if (e.getClientNickname().equals("TeamSpeakUser")) {
+                        if (e.getClientNickname().equalsIgnoreCase("teamspeakuser")) {
                             if (settingsObj.getDefaultNicknameCheck_mode() == 1) {
                                 api.sendPrivateMessage(e.getClientId(), settingsObj.getDefaultNicknameCheck_message());
                             }
