@@ -2,6 +2,7 @@
 
 
     general_ip: 127.0.0.1
+    general_virtualServerID: 1
     general_loginname: queryLoginName
     general_loginpassword: queryPassword
     general_displayname: displayName
