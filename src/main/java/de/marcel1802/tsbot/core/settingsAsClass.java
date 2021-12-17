@@ -5,6 +5,10 @@ public class settingsAsClass {
 
 
     private String  general_ip;
+
+
+
+    private int     general_virtualServerID;
     private String  general_loginname;
     private String  general_loginpassword;
     private String  general_displayname;
@@ -28,8 +32,9 @@ public class settingsAsClass {
 
     public settingsAsClass() {}
 
-    public settingsAsClass(String general_ip, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message) {
+    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message) {
         this.general_ip = general_ip;
+        this.general_virtualServerID = general_virtualServerID;
         this.general_loginname = general_loginname;
         this.general_loginpassword = general_loginpassword;
         this.general_displayname = general_displayname;
@@ -48,7 +53,6 @@ public class settingsAsClass {
         this.defaultNicknameCheck_mode = defaultNicknameCheck_mode;
         this.defaultNicknameCheck_message = defaultNicknameCheck_message;
     }
-
 
     public int getGeneral_joinChannel() {
         return general_joinChannel;
@@ -195,10 +199,19 @@ public class settingsAsClass {
         this.defaultNicknameCheck_mode = defaultNicknameCheck_mode;
     }
 
+    public int getGeneral_virtualServerID() {
+        return general_virtualServerID;
+    }
+
+    public void setGeneral_virtualServerID(int general_virtualServerID) {
+        this.general_virtualServerID = general_virtualServerID;
+    }
+
     @Override
     public String toString() {
         return "settingsAsClass{" +
                 "general_ip='" + general_ip + '\'' +
+                ", general_virtualServerID=" + general_virtualServerID +
                 ", general_loginname='" + general_loginname + '\'' +
                 ", general_loginpassword='" + general_loginpassword + '\'' +
                 ", general_displayname='" + general_displayname + '\'' +

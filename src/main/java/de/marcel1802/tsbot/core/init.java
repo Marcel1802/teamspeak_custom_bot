@@ -37,7 +37,7 @@ public class init {
 
             final TS3Api api = query.getApi();
             api.login(settingsObj.getGeneral_loginname(), settingsObj.getGeneral_loginpassword());
-            api.selectVirtualServerById(1);
+            api.selectVirtualServerById(settingsObj.getGeneral_virtualServerID());
 
             try {
                 api.setNickname(settingsObj.getGeneral_displayname());
