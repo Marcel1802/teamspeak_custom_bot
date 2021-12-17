@@ -45,6 +45,7 @@ public class init {
                 //todo
             }
 
+
             api.moveQuery(settingsObj.getGeneral_joinChannel());
 
             Set<Integer> moveDefault_list = new HashSet<>();
@@ -104,14 +105,14 @@ public class init {
 
                 @Override
                 public void onClientLeave(ClientLeaveEvent e) {
-                    if (settingsObj.isMoveDefault_enabled() && moveDefault_list.contains(e.getClientId())) {
+                    if (settingsObj.isMoveDefault_enabled()) {//&& moveDefault_list.contains(e.getClientId())
                         moveDefault_list.remove(e.getClientId());
                     }
                 }
 
                 @Override
                 public void onClientMoved(ClientMovedEvent e) {
-                    if (settingsObj.isMoveDefault_enabled() && moveDefault_list.contains(e.getClientId())) {
+                    if (settingsObj.isMoveDefault_enabled()) {//&& moveDefault_list.contains(e.getClientId())
                             moveDefault_list.remove(e.getClientId());
                     }
                 }
