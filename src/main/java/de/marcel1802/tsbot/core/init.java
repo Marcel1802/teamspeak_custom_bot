@@ -136,7 +136,14 @@ public class init {
                     }
                 }
 
-
+                if (loadedSettings.isCountryList_enabled()) {
+                    if (loadedSettings.getCountryList_mode() == 0 && !loadedSettings.getCountryList_whitelist().contains(e.getClientCountry())) {
+                        api.kickClientFromServer(loadedSettings.getCountryList_whitelistKickMessage(),e.getClientId());
+                    }
+                    else if (loadedSettings.getCountryList_mode() == 1 && loadedSettings.getCountryList_blacklist().contains(e.getClientCountry())) {
+                        api.kickClientFromServer(loadedSettings.getCountryList_blacklistKickMessage(), e.getClientId());
+                    }
+                }
             }
 
             @Override

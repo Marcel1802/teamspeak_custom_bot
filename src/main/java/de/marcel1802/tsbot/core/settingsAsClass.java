@@ -37,6 +37,98 @@ public class settingsAsClass {
     private Set<String> versionWarner_warningVersions;
     private String      versionWarner_warnMessage;
 
+    private boolean     countryList_enabled;
+    private int         countryList_mode;
+    private Set<String> countryList_whitelist;
+    private String      countryList_whitelistKickMessage;
+    private Set<String> countryList_blacklist;
+    private String      countryList_blacklistKickMessage;
+
+    @Override
+    public String toString() {
+        return "settingsAsClass{" +
+                "general_ip='" + general_ip + '\'' +
+                ", general_virtualServerID=" + general_virtualServerID +
+                ", general_loginname='" + general_loginname + '\'' +
+                ", general_loginpassword='" + general_loginpassword + '\'' +
+                ", general_displayname='" + general_displayname + '\'' +
+                ", general_joinChannel=" + general_joinChannel +
+                ", moveDefault_enabled=" + moveDefault_enabled +
+                ", moveDefault_defaultChannelID=" + moveDefault_defaultChannelID +
+                ", moveDefault_AFKChannelID=" + moveDefault_AFKChannelID +
+                ", moveDefault_moveTime=" + moveDefault_moveTime +
+                ", moveDefault_mode=" + moveDefault_mode +
+                ", moveDefault_message='" + moveDefault_message + '\'' +
+                ", notifyComplaints_enabled=" + notifyComplaints_enabled +
+                ", notifyComplaints_adminGroup=" + notifyComplaints_adminGroup +
+                ", notifyComplaints_mode=" + notifyComplaints_mode +
+                ", notifyComplaints_message='" + notifyComplaints_message + '\'' +
+                ", defaultNicknameCheck_enabled=" + defaultNicknameCheck_enabled +
+                ", defaultNicknameCheck_mode=" + defaultNicknameCheck_mode +
+                ", defaultNicknameCheck_message='" + defaultNicknameCheck_message + '\'' +
+                ", versionWarner_enabled=" + versionWarner_enabled +
+                ", versionWarner_warningVersions=" + versionWarner_warningVersions +
+                ", versionWarner_warnMessage='" + versionWarner_warnMessage + '\'' +
+                ", countryList_enabled=" + countryList_enabled +
+                ", countryList_mode=" + countryList_mode +
+                ", countryList_whitelist=" + countryList_whitelist +
+                ", countryList_whitelistKickMessage='" + countryList_whitelistKickMessage + '\'' +
+                ", countryList_blacklist=" + countryList_blacklist +
+                ", countryList_blacklistKickMessage='" + countryList_blacklistKickMessage + '\'' +
+                ", versionWarner_warnMethod=" + versionWarner_warnMethod +
+                ", versionWarner_kickVersions=" + versionWarner_kickVersions +
+                ", versionWarner_kickMessage='" + versionWarner_kickMessage + '\'' +
+                '}';
+    }
+
+    public boolean isCountryList_enabled() {
+        return countryList_enabled;
+    }
+
+    public void setCountryList_enabled(boolean countryList_enabled) {
+        this.countryList_enabled = countryList_enabled;
+    }
+
+    public int getCountryList_mode() {
+        return countryList_mode;
+    }
+
+    public void setCountryList_mode(int countryList_mode) {
+        this.countryList_mode = countryList_mode;
+    }
+
+    public Set<String> getCountryList_whitelist() {
+        return countryList_whitelist;
+    }
+
+    public void setCountryList_whitelist(Set<String> countryList_whitelist) {
+        this.countryList_whitelist = countryList_whitelist;
+    }
+
+    public String getCountryList_whitelistKickMessage() {
+        return countryList_whitelistKickMessage;
+    }
+
+    public void setCountryList_whitelistKickMessage(String countryList_whitelistKickMessage) {
+        this.countryList_whitelistKickMessage = countryList_whitelistKickMessage;
+    }
+
+    public Set<String> getCountryList_blacklist() {
+        return countryList_blacklist;
+    }
+
+    public void setCountryList_blacklist(Set<String> countryList_blacklist) {
+        this.countryList_blacklist = countryList_blacklist;
+    }
+
+    public String getCountryList_blacklistKickMessage() {
+        return countryList_blacklistKickMessage;
+    }
+
+    public void setCountryList_blacklistKickMessage(String countryList_blacklistKickMessage) {
+        this.countryList_blacklistKickMessage = countryList_blacklistKickMessage;
+    }
+
     public int getVersionWarner_warnMethod() {
         return versionWarner_warnMethod;
     }
@@ -91,38 +183,7 @@ public class settingsAsClass {
 
     public settingsAsClass() {}
 
-    @Override
-    public String toString() {
-        return "settingsAsClass{" +
-                "general_ip='" + general_ip + '\'' +
-                ", general_virtualServerID=" + general_virtualServerID +
-                ", general_loginname='" + general_loginname + '\'' +
-                ", general_loginpassword='" + general_loginpassword + '\'' +
-                ", general_displayname='" + general_displayname + '\'' +
-                ", general_joinChannel=" + general_joinChannel +
-                ", moveDefault_enabled=" + moveDefault_enabled +
-                ", moveDefault_defaultChannelID=" + moveDefault_defaultChannelID +
-                ", moveDefault_AFKChannelID=" + moveDefault_AFKChannelID +
-                ", moveDefault_moveTime=" + moveDefault_moveTime +
-                ", moveDefault_mode=" + moveDefault_mode +
-                ", moveDefault_message='" + moveDefault_message + '\'' +
-                ", notifyComplaints_enabled=" + notifyComplaints_enabled +
-                ", notifyComplaints_adminGroup=" + notifyComplaints_adminGroup +
-                ", notifyComplaints_mode=" + notifyComplaints_mode +
-                ", notifyComplaints_message='" + notifyComplaints_message + '\'' +
-                ", defaultNicknameCheck_enabled=" + defaultNicknameCheck_enabled +
-                ", defaultNicknameCheck_mode=" + defaultNicknameCheck_mode +
-                ", defaultNicknameCheck_message='" + defaultNicknameCheck_message + '\'' +
-                ", versionWarner_enabled=" + versionWarner_enabled +
-                ", versionWarner_warningVersions=" + versionWarner_warningVersions +
-                ", versionWarner_warnMessage='" + versionWarner_warnMessage + '\'' +
-                ", versionWarner_warnMethod=" + versionWarner_warnMethod +
-                ", versionWarner_kickVersions=" + versionWarner_kickVersions +
-                ", versionWarner_kickMessage='" + versionWarner_kickMessage + '\'' +
-                '}';
-    }
-
-    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
+    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, boolean countryList_enabled, int countryList_mode, Set<String> countryList_whitelist, String countryList_whitelistKickMessage, Set<String> countryList_blacklist, String countryList_blacklistKickMessage, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
         this.general_ip = general_ip;
         this.general_virtualServerID = general_virtualServerID;
         this.general_loginname = general_loginname;
@@ -145,6 +206,12 @@ public class settingsAsClass {
         this.versionWarner_enabled = versionWarner_enabled;
         this.versionWarner_warningVersions = versionWarner_warningVersions;
         this.versionWarner_warnMessage = versionWarner_warnMessage;
+        this.countryList_enabled = countryList_enabled;
+        this.countryList_mode = countryList_mode;
+        this.countryList_whitelist = countryList_whitelist;
+        this.countryList_whitelistKickMessage = countryList_whitelistKickMessage;
+        this.countryList_blacklist = countryList_blacklist;
+        this.countryList_blacklistKickMessage = countryList_blacklistKickMessage;
         this.versionWarner_warnMethod = versionWarner_warnMethod;
         this.versionWarner_kickVersions = versionWarner_kickVersions;
         this.versionWarner_kickMessage = versionWarner_kickMessage;

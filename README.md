@@ -1,6 +1,5 @@
 ### Creating a 'settings.yaml' in the same directory as the jar files is necessary
 
-
     general_ip: 127.0.0.1
     general_virtualServerID: 1
     general_loginname: queryLoginName
@@ -35,6 +34,22 @@
         - "3.3.2 [Build: 1566767614]"
     versionWarner_kickMessage: Your TeamSpeak client is VERY outdated. Please update your client immediately.
 
+    countryList_enabled: false
+    countryList_mode: 0
+    countryList_whitelist:
+        - DE
+        - AT
+        - CH
+        - US
+        - SE
+        - PT
+        - ""
+    countryList_whitelistKickMessage: Your country is not on the whitelist.
+    countryList_blacklist:
+        - CN
+        - HK
+    countryList_blacklistKickMessage: Your country is blacklisted on this server.
+
 ## Modules
 
 moveDefault: Moves a client after a specific time if the user is idling in the default channel
@@ -44,6 +59,10 @@ notifyComplaints: Notifies admins after joining if there are entries on the comp
 defaultNicknameCheck: Notifies a user if the name is equals "TeamSpeakUser"
 
 versionWarner: Warns / kicks clients if their TeamSpeak client version is listed (used for outdated client versions)
+
+countryList: Whitelist / blacklist for countries, kick on connect (Use ISO-Codes for the country names > https://en.wikipedia.org/wiki/ISO_3166-1)
+
+
 
 ## Some setting explainations
 
@@ -56,3 +75,7 @@ versionWarner: Warns / kicks clients if their TeamSpeak client version is listed
 > notifyComplaints_mode: Possible modes: 1 = message, 2 = poke
 
 > defaultNicknameCheck_mode: Possible modes: 1 = message, 2 = poke, 3 = kick
+
+> countryList_mode: 0 = whitelist, 1 = blacklist
+
+> countryList: empty string for local connections / if the country cannot be determined
