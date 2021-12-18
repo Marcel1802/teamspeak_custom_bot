@@ -24,6 +24,17 @@
     defaultNicknameCheck_mode: 1
     defaultNicknameCheck_message: Please don't use the default name, choose another one.
 
+    versionWarner_enabled: true
+    versionWarner_warningVersions:
+        - "3.5.3 [Build: 1588756070]"
+        - "3.5.2 [Build: 1585812952]"
+        - "3.5.0 [Build: 1605605389]"
+    versionWarner_warnMethod: 1
+    versionWarner_warnMessage: You are using an outdated version of the TeamSpeak client. Please update your client.
+    versionWarner_kickVersions:
+        - "3.3.2 [Build: 1566767614]"
+    versionWarner_kickMessage: Your TeamSpeak client is VERY outdated. Please update your client immediately.
+
 ## Modules
 
 moveDefault: Moves a client after a specific time if the user is idling in the default channel
@@ -31,6 +42,8 @@ moveDefault: Moves a client after a specific time if the user is idling in the d
 notifyComplaints: Notifies admins after joining if there are entries on the complaints list
 
 defaultNicknameCheck: Notifies a user if the name is equals "TeamSpeakUser"
+
+versionWarner: Warns / kicks clients if their TeamSpeak client version is listed (used for outdated client versions)
 
 ## Some setting explainations
 

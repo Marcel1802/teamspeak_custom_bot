@@ -1,6 +1,8 @@
 package de.marcel1802.tsbot.core;
 
 
+import java.util.Set;
+
 public class settingsAsClass {
 
 
@@ -27,12 +29,100 @@ public class settingsAsClass {
     private String  notifyComplaints_message;
 
     private boolean defaultNicknameCheck_enabled;
-    private int defaultNicknameCheck_mode;
+    private int     defaultNicknameCheck_mode;
     private String  defaultNicknameCheck_message;
+
+
+    private boolean     versionWarner_enabled;
+    private Set<String> versionWarner_warningVersions;
+    private String      versionWarner_warnMessage;
+
+    public int getVersionWarner_warnMethod() {
+        return versionWarner_warnMethod;
+    }
+
+    public void setVersionWarner_warnMethod(int versionWarner_warnMethod) {
+        this.versionWarner_warnMethod = versionWarner_warnMethod;
+    }
+
+    private int         versionWarner_warnMethod;
+    private Set<String> versionWarner_kickVersions;
+    private String      versionWarner_kickMessage;
+
+    public boolean isVersionWarner_enabled() {
+        return versionWarner_enabled;
+    }
+
+    public void setVersionWarner_enabled(boolean versionWarner_enabled) {
+        this.versionWarner_enabled = versionWarner_enabled;
+    }
+
+    public Set<String> getVersionWarner_warningVersions() {
+        return versionWarner_warningVersions;
+    }
+
+    public void setVersionWarner_warningVersions(Set<String> versionWarner_warningVersions) {
+        this.versionWarner_warningVersions = versionWarner_warningVersions;
+    }
+
+    public String getVersionWarner_warnMessage() {
+        return versionWarner_warnMessage;
+    }
+
+    public void setVersionWarner_warnMessage(String versionWarner_warnMessage) {
+        this.versionWarner_warnMessage = versionWarner_warnMessage;
+    }
+
+    public Set<String> getVersionWarner_kickVersions() {
+        return versionWarner_kickVersions;
+    }
+
+    public void setVersionWarner_kickVersions(Set<String> versionWarner_kickVersions) {
+        this.versionWarner_kickVersions = versionWarner_kickVersions;
+    }
+
+    public String getVersionWarner_kickMessage() {
+        return versionWarner_kickMessage;
+    }
+
+    public void setVersionWarner_kickMessage(String versionWarner_kickMessage) {
+        this.versionWarner_kickMessage = versionWarner_kickMessage;
+    }
 
     public settingsAsClass() {}
 
-    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message) {
+    @Override
+    public String toString() {
+        return "settingsAsClass{" +
+                "general_ip='" + general_ip + '\'' +
+                ", general_virtualServerID=" + general_virtualServerID +
+                ", general_loginname='" + general_loginname + '\'' +
+                ", general_loginpassword='" + general_loginpassword + '\'' +
+                ", general_displayname='" + general_displayname + '\'' +
+                ", general_joinChannel=" + general_joinChannel +
+                ", moveDefault_enabled=" + moveDefault_enabled +
+                ", moveDefault_defaultChannelID=" + moveDefault_defaultChannelID +
+                ", moveDefault_AFKChannelID=" + moveDefault_AFKChannelID +
+                ", moveDefault_moveTime=" + moveDefault_moveTime +
+                ", moveDefault_mode=" + moveDefault_mode +
+                ", moveDefault_message='" + moveDefault_message + '\'' +
+                ", notifyComplaints_enabled=" + notifyComplaints_enabled +
+                ", notifyComplaints_adminGroup=" + notifyComplaints_adminGroup +
+                ", notifyComplaints_mode=" + notifyComplaints_mode +
+                ", notifyComplaints_message='" + notifyComplaints_message + '\'' +
+                ", defaultNicknameCheck_enabled=" + defaultNicknameCheck_enabled +
+                ", defaultNicknameCheck_mode=" + defaultNicknameCheck_mode +
+                ", defaultNicknameCheck_message='" + defaultNicknameCheck_message + '\'' +
+                ", versionWarner_enabled=" + versionWarner_enabled +
+                ", versionWarner_warningVersions=" + versionWarner_warningVersions +
+                ", versionWarner_warnMessage='" + versionWarner_warnMessage + '\'' +
+                ", versionWarner_warnMethod=" + versionWarner_warnMethod +
+                ", versionWarner_kickVersions=" + versionWarner_kickVersions +
+                ", versionWarner_kickMessage='" + versionWarner_kickMessage + '\'' +
+                '}';
+    }
+
+    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
         this.general_ip = general_ip;
         this.general_virtualServerID = general_virtualServerID;
         this.general_loginname = general_loginname;
@@ -52,6 +142,12 @@ public class settingsAsClass {
         this.defaultNicknameCheck_enabled = defaultNicknameCheck_enabled;
         this.defaultNicknameCheck_mode = defaultNicknameCheck_mode;
         this.defaultNicknameCheck_message = defaultNicknameCheck_message;
+        this.versionWarner_enabled = versionWarner_enabled;
+        this.versionWarner_warningVersions = versionWarner_warningVersions;
+        this.versionWarner_warnMessage = versionWarner_warnMessage;
+        this.versionWarner_warnMethod = versionWarner_warnMethod;
+        this.versionWarner_kickVersions = versionWarner_kickVersions;
+        this.versionWarner_kickMessage = versionWarner_kickMessage;
     }
 
     public int getGeneral_joinChannel() {
@@ -207,28 +303,4 @@ public class settingsAsClass {
         this.general_virtualServerID = general_virtualServerID;
     }
 
-    @Override
-    public String toString() {
-        return "settingsAsClass{" +
-                "general_ip='" + general_ip + '\'' +
-                ", general_virtualServerID=" + general_virtualServerID +
-                ", general_loginname='" + general_loginname + '\'' +
-                ", general_loginpassword='" + general_loginpassword + '\'' +
-                ", general_displayname='" + general_displayname + '\'' +
-                ", general_joinChannel=" + general_joinChannel +
-                ", moveDefault_enabled=" + moveDefault_enabled +
-                ", moveDefault_defaultChannelID=" + moveDefault_defaultChannelID +
-                ", moveDefault_AFKChannelID=" + moveDefault_AFKChannelID +
-                ", moveDefault_moveTime=" + moveDefault_moveTime +
-                ", moveDefault_mode=" + moveDefault_mode +
-                ", moveDefault_message='" + moveDefault_message + '\'' +
-                ", notifyComplaints_enabled=" + notifyComplaints_enabled +
-                ", notifyComplaints_adminGroup=" + notifyComplaints_adminGroup +
-                ", notifyComplaints_mode=" + notifyComplaints_mode +
-                ", notifyComplaints_message='" + notifyComplaints_message + '\'' +
-                ", defaultNicknameCheck_enabled=" + defaultNicknameCheck_enabled +
-                ", defaultNicknameCheck_mode=" + defaultNicknameCheck_mode +
-                ", defaultNicknameCheck_message='" + defaultNicknameCheck_message + '\'' +
-                '}';
-    }
 }

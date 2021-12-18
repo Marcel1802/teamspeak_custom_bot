@@ -39,6 +39,7 @@ public class init {
             return om.readValue(file, settingsAsClass.class);
         }
         catch(Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }
@@ -56,14 +57,16 @@ public class init {
         api.login(loadedSettings.getGeneral_loginname(), loadedSettings.getGeneral_loginpassword());
         api.selectVirtualServerById(loadedSettings.getGeneral_virtualServerID());
 
-        try {
-            api.setNickname(loadedSettings.getGeneral_displayname());
-        } catch (Exception ex) {
-            //todo
+        final int thisBotID = api.whoAmI().getId();
+
+        if (api.getClientInfo(thisBotID).getChannelId() != loadedSettings.getGeneral_joinChannel()) {
+            api.moveQuery(loadedSettings.getGeneral_joinChannel());
         }
 
+        if (!api.getClientInfo(thisBotID).getNickname().equals(loadedSettings.getGeneral_displayname())) {
+            api.setNickname(loadedSettings.getGeneral_displayname());
+        }
 
-        api.moveQuery(loadedSettings.getGeneral_joinChannel());
 
         Set<Integer> moveDefault_list = new HashSet<>();
 
@@ -118,6 +121,22 @@ public class init {
                         }
                     }
                 }
+
+                if (loadedSettings.isVersionWarner_enabled() && e.getClientType() == 0) {
+                    if (loadedSettings.getVersionWarner_kickVersions().contains(api.getClientInfo(e.getClientId()).getVersion())) {
+                        api.kickClientFromServer(loadedSettings.getVersionWarner_kickMessage(),e.getClientId());
+                    }
+                    else if (loadedSettings.getVersionWarner_warningVersions().contains(api.getClientInfo(e.getClientId()).getVersion())) {
+                        if (loadedSettings.getVersionWarner_warnMethod() == 1) {
+                            api.sendPrivateMessage(e.getClientId(), loadedSettings.getVersionWarner_warnMessage());
+                        }
+                        else {
+                            api.pokeClient(e.getClientId(), loadedSettings.getVersionWarner_warnMessage());
+                        }
+                    }
+                }
+
+
             }
 
             @Override
