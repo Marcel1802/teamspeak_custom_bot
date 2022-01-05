@@ -82,11 +82,7 @@ public class init {
                             Thread.sleep(1000L * loadedSettings.getMoveDefault_moveTime());
                             if (moveDefault_list.contains(e.getClientId()) && api.getClientInfo(e.getClientId()).getChannelId() == loadedSettings.getMoveDefault_defaultChannelID()) {
                                 api.moveClient(e.getClientId(), loadedSettings.getMoveDefault_AFKChannelID());
-                                if (loadedSettings.getMoveDefault_mode() == 1) {
-                                    api.sendPrivateMessage(e.getClientId(), loadedSettings.getMoveDefault_message());
-                                } else if (loadedSettings.getMoveDefault_mode() == 2) {
-                                    api.pokeClient(e.getClientId(), loadedSettings.getMoveDefault_message());
-                                }
+                                executeAction(loadedSettings.getMoveDefault_mode(),loadedSettings.getMoveDefault_message(),e.getClientId(),api);
                                 moveDefault_list.remove(e.getClientId());
                             }
                         } catch (Exception ex) {
@@ -99,26 +95,14 @@ public class init {
                     if (!api.getComplaints().isEmpty()) {
                         List<String> servergroups = Arrays.asList(e.getClientServerGroups().split("\\s*,\\s*"));
                         if (servergroups.contains(Integer.toString(loadedSettings.getNotifyComplaints_adminGroup()))) {
-                            if (loadedSettings.getNotifyComplaints_mode() == 1) {
-                                api.sendPrivateMessage(e.getClientId(), loadedSettings.getNotifyComplaints_message());
-                            } else if (loadedSettings.getNotifyComplaints_mode() == 2) {
-                                api.pokeClient(e.getClientId(), loadedSettings.getNotifyComplaints_message());
-                            }
+                            executeAction(loadedSettings.getNotifyComplaints_mode(),loadedSettings.getNotifyComplaints_message(),e.getClientId(), api);
                         }
                     }
                 }
 
                 if (loadedSettings.isDefaultNicknameCheck_enabled()) {
                     if (e.getClientNickname().equalsIgnoreCase("teamspeakuser")) {
-                        if (loadedSettings.getDefaultNicknameCheck_mode() == 1) {
-                            api.sendPrivateMessage(e.getClientId(), loadedSettings.getDefaultNicknameCheck_message());
-                        }
-                        else if (loadedSettings.getDefaultNicknameCheck_mode() == 2) {
-                            api.pokeClient(e.getClientId(), loadedSettings.getDefaultNicknameCheck_message());
-                        }
-                        else {
-                            api.kickClientFromServer(loadedSettings.getDefaultNicknameCheck_message(), e.getClientId());
-                        }
+                        executeAction(loadedSettings.getDefaultNicknameCheck_mode(),loadedSettings.getDefaultNicknameCheck_message(),e.getClientId(),api);
                     }
                 }
 
@@ -137,12 +121,14 @@ public class init {
                 }
 
                 if (loadedSettings.isCountryList_enabled()) {
+
                     if (loadedSettings.getCountryList_mode() == 0 && !loadedSettings.getCountryList_whitelist().contains(e.getClientCountry())) {
                         api.kickClientFromServer(loadedSettings.getCountryList_whitelistKickMessage(),e.getClientId());
                     }
                     else if (loadedSettings.getCountryList_mode() == 1 && loadedSettings.getCountryList_blacklist().contains(e.getClientCountry())) {
                         api.kickClientFromServer(loadedSettings.getCountryList_blacklistKickMessage(), e.getClientId());
                     }
+
                 }
             }
 
@@ -161,5 +147,30 @@ public class init {
             }
         });
 
+    }
+
+    public static void executeAction(BotAction botAction, String message, int clientID, TS3Api apiObj) {
+        switch (botAction) {
+
+            case NONE: {
+                break;
+            }
+
+            case MESSAGE: {
+                apiObj.sendPrivateMessage(clientID,message);
+                break;
+            }
+
+            case POKE: {
+                apiObj.pokeClient(clientID, message);
+                break;
+            }
+
+            case KICK: {
+                apiObj.kickClientFromServer(message, clientID);
+                break;
+            }
+
+        }
     }
 }

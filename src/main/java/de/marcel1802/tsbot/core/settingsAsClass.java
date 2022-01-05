@@ -7,30 +7,27 @@ public class settingsAsClass {
 
 
     private String  general_ip;
-
-
-
     private int     general_virtualServerID;
     private String  general_loginname;
     private String  general_loginpassword;
     private String  general_displayname;
     private int     general_joinChannel;
 
-    private boolean moveDefault_enabled;
-    private int     moveDefault_defaultChannelID;
-    private int     moveDefault_AFKChannelID;
-    private int     moveDefault_moveTime;
-    private int     moveDefault_mode;
-    private String  moveDefault_message;
+    private boolean     moveDefault_enabled;
+    private int         moveDefault_defaultChannelID;
+    private int         moveDefault_AFKChannelID;
+    private int         moveDefault_moveTime;
+    private BotAction   moveDefault_mode;
+    private String      moveDefault_message;
 
-    private boolean notifyComplaints_enabled;
-    private int     notifyComplaints_adminGroup;
-    private int     notifyComplaints_mode;
+    private boolean     notifyComplaints_enabled;
+    private int         notifyComplaints_adminGroup;
+    private BotAction   notifyComplaints_mode;
     private String  notifyComplaints_message;
 
-    private boolean defaultNicknameCheck_enabled;
-    private int     defaultNicknameCheck_mode;
-    private String  defaultNicknameCheck_message;
+    private boolean     defaultNicknameCheck_enabled;
+    private BotAction   defaultNicknameCheck_mode;
+    private String      defaultNicknameCheck_message;
 
 
     private boolean     versionWarner_enabled;
@@ -183,7 +180,7 @@ public class settingsAsClass {
 
     public settingsAsClass() {}
 
-    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, int moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, int notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, int defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, boolean countryList_enabled, int countryList_mode, Set<String> countryList_whitelist, String countryList_whitelistKickMessage, Set<String> countryList_blacklist, String countryList_blacklistKickMessage, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
+    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, String moveDefault_mode, String moveDefault_message, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, String notifyComplaints_mode, String notifyComplaints_message, boolean defaultNicknameCheck_enabled, String defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, boolean countryList_enabled, int countryList_mode, Set<String> countryList_whitelist, String countryList_whitelistKickMessage, Set<String> countryList_blacklist, String countryList_blacklistKickMessage, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
         this.general_ip = general_ip;
         this.general_virtualServerID = general_virtualServerID;
         this.general_loginname = general_loginname;
@@ -194,14 +191,14 @@ public class settingsAsClass {
         this.moveDefault_defaultChannelID = moveDefault_defaultChannelID;
         this.moveDefault_AFKChannelID = moveDefault_AFKChannelID;
         this.moveDefault_moveTime = moveDefault_moveTime;
-        this.moveDefault_mode = moveDefault_mode;
+        this.moveDefault_mode = BotAction.valueOf(moveDefault_mode);
         this.moveDefault_message = moveDefault_message;
         this.notifyComplaints_enabled = notifyComplaints_enabled;
         this.notifyComplaints_adminGroup = notifyComplaints_adminGroup;
-        this.notifyComplaints_mode = notifyComplaints_mode;
+        this.notifyComplaints_mode = BotAction.valueOf(notifyComplaints_mode);
         this.notifyComplaints_message = notifyComplaints_message;
         this.defaultNicknameCheck_enabled = defaultNicknameCheck_enabled;
-        this.defaultNicknameCheck_mode = defaultNicknameCheck_mode;
+        this.defaultNicknameCheck_mode = BotAction.valueOf(defaultNicknameCheck_mode);
         this.defaultNicknameCheck_message = defaultNicknameCheck_message;
         this.versionWarner_enabled = versionWarner_enabled;
         this.versionWarner_warningVersions = versionWarner_warningVersions;
@@ -289,11 +286,11 @@ public class settingsAsClass {
         this.moveDefault_moveTime = moveDefault_moveTime;
     }
 
-    public int getMoveDefault_mode() {
+    public BotAction getMoveDefault_mode() {
         return moveDefault_mode;
     }
 
-    public void setMoveDefault_mode(int moveDefault_mode) {
+    public void setMoveDefault_mode(BotAction moveDefault_mode) {
         this.moveDefault_mode = moveDefault_mode;
     }
 
@@ -321,11 +318,11 @@ public class settingsAsClass {
         this.notifyComplaints_adminGroup = notifyComplaints_adminGroup;
     }
 
-    public int getNotifyComplaints_mode() {
+    public BotAction getNotifyComplaints_mode() {
         return notifyComplaints_mode;
     }
 
-    public void setNotifyComplaints_mode(int notifyComplaints_mode) {
+    public void setNotifyComplaints_mode(BotAction notifyComplaints_mode) {
         this.notifyComplaints_mode = notifyComplaints_mode;
     }
 
@@ -354,11 +351,11 @@ public class settingsAsClass {
         this.defaultNicknameCheck_message = defaultNicknameCheck_message;
     }
 
-    public int getDefaultNicknameCheck_mode() {
+    public BotAction getDefaultNicknameCheck_mode() {
         return defaultNicknameCheck_mode;
     }
 
-    public void setDefaultNicknameCheck_mode(int defaultNicknameCheck_mode) {
+    public void setDefaultNicknameCheck_mode(BotAction defaultNicknameCheck_mode) {
         this.defaultNicknameCheck_mode = defaultNicknameCheck_mode;
     }
 

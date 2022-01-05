@@ -11,16 +11,16 @@
     moveDefault_defaultChannelID: 1
     moveDefault_AFKChannelID: 2
     moveDefault_moveTime: 30
-    moveDefault_mode: 1
+    moveDefault_mode: MESSAGE
     moveDefault_message:  You got moved due to inactivity.
 
     notifyComplaints_enabled: true
     notifyComplaints_adminGroup: 6
-    notifyComplaints_mode: 1
+    notifyComplaints_mode: POKE
     notifyComplaints_message: There are entries on the complaints list!
 
     defaultNicknameCheck_enabled: true
-    defaultNicknameCheck_mode: 1
+    defaultNicknameCheck_mode: KICK
     defaultNicknameCheck_message: Please don't use the default name, choose another one.
 
     versionWarner_enabled: true
@@ -68,13 +68,13 @@ countryList: Whitelist / blacklist for countries, kick on connect (Use ISO-Codes
 
 > general_joinChannel: Channel the bot goes into after joining
 
-> moveDefault_mode: Possible modes: 0 = no notification, 1 = message, 2 = poke
+> moveDefault_mode: Possible modes: NONE,MESSAGE,POKE
 
 > moveDefault_moveTime: Time after the client gets moved from the default channel into the AFK channel (in seconds)
 
-> notifyComplaints_mode: Possible modes: 1 = message, 2 = poke
+> notifyComplaints_mode: Possible modes: MESSAGE,POKE
 
-> defaultNicknameCheck_mode: Possible modes: 1 = message, 2 = poke, 3 = kick
+> defaultNicknameCheck_mode: Possible modes: MESSAGE,POKE,KICK
 
 > countryList_mode: 0 = whitelist, 1 = blacklist
 
