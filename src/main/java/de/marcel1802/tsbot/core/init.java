@@ -53,6 +53,7 @@ public class init {
             }
             catch (Exception ex) {
                 System.out.println("Config file cannot be created.");
+                return false;
             }
 
             try (BufferedReader br = new BufferedReader(Files.newBufferedReader(defaultSettingsPath));

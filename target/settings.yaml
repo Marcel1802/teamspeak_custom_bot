@@ -1,0 +1,53 @@
+general_ip: 127.0.0.1
+general_virtualServerID: 1
+general_loginname: testbot
+general_loginpassword: HGJt+7WK
+general_displayname: testbot
+general_joinChannel: 1
+
+moveDefault_enabled: true
+moveDefault_defaultChannelID: 1
+moveDefault_AFKChannelID: 2
+moveDefault_moveTime: 30
+moveDefault_mode: POKE
+moveDefault_message:  You got moved due to inactivity.
+
+notifyComplaints_enabled: true
+notifyComplaints_adminGroup: 6
+notifyComplaints_mode: POKE
+notifyComplaints_message: There are entries on the complaints list!
+
+defaultNicknameCheck_enabled: true
+defaultNicknameCheck_mode: KICK
+defaultNicknameCheck_message: Please don't use the default name, choose another one.
+
+versionWarner_enabled: true
+versionWarner_warningVersions:
+  - "3.5.3 [Build: 1588756070]"
+  - "3.5.2 [Build: 1585812952]"
+  - "3.5.0 [Build: 1605605389]"
+versionWarner_warnMethod: 2
+versionWarner_warnMessage: You are using an outdated version of the TeamSpeak client. Please update your client.
+versionWarner_kickVersions:
+  - "3.3.2 [Build: 1566767614]"
+versionWarner_kickMessage: Your TeamSpeak client is VERY outdated. Please update your client immediately.
+
+countryList_enabled: true
+countryList_mode: 1
+countryList_whitelist:
+  - DE
+  - AT
+  - CH
+  - US
+  - SE
+  - PT
+  - ""
+countryList_whitelistKickMessage: Your country is not on the whitelist.
+countryList_blacklist:
+  - CN
+  - RU
+  - TR
+  - HK
+countryList_blacklistKickMessage: Your country is blacklisted on this server.
+
+
