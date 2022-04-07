@@ -1,4 +1,4 @@
-### Creating a 'settings.yaml' in the same directory as the jar files is necessary
+### This 'settings.yaml' will be created next to your .JAR
 
     general_ip: 127.0.0.1
     general_virtualServerID: 1
