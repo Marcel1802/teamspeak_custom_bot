@@ -11,8 +11,6 @@ import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
 import com.github.theholywaffle.teamspeak3.api.event.TS3EventAdapter;
 import com.github.theholywaffle.teamspeak3.api.event.TS3EventType;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,17 +20,25 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 public class init {
 
+    static Logger logger = Logger.getLogger("MyLog");
+    static FileHandler fh;
+
     public static void main(String[] args) {
 
+        fh = Logging.init(logger);
+
+        if (fh == null) return;
         if (!checkConfigExist()) return;
 
         settingsAsClass settingsObj = loadSettings();
 
         if (settingsObj == null) {
-            System.out.println("Config error. The format does not fit.");
+            logger.warning("Config error. The format does not fit.");
         }
         else {
             startTeamspeakBot(settingsObj);
@@ -52,14 +58,14 @@ public class init {
                 Files.createFile(p);
             }
             catch (Exception ex) {
-                System.out.println("Config file cannot be created.");
+                logger.warning("Config file cannot be created.");
                 return false;
             }
 
             try (BufferedReader br = new BufferedReader(Files.newBufferedReader(defaultSettingsPath));
                  BufferedWriter bw = new BufferedWriter(Files.newBufferedWriter(p))) {
 
-                System.out.println("The config file does not exist. Config created. Please adjust the settings and restart the bot.");
+                logger.warning("The config file does not exist. Config created. Please adjust the settings and restart the bot.");
 
                 String line;
 
@@ -70,7 +76,7 @@ public class init {
                 return false;
             }
             catch (Exception ex) {
-                System.out.println("Config file created. Cannot copy default settings.");
+                logger.warning("Config file created. Cannot copy default settings.");
                 return false;
             }
         }
@@ -89,17 +95,39 @@ public class init {
 
     public static void startTeamspeakBot(settingsAsClass loadedSettings) {
 
+        logger.info("Config found and okay. Starting bot ...");
+
         final TS3Config config = new TS3Config();
         config.setHost(loadedSettings.getGeneral_ip());
         config.setEnableCommunicationsLogging(true);
 
         final TS3Query query = new TS3Query(config);
-        query.connect();
+
+        try {
+            query.connect();
+        }
+        catch (Exception ex) {
+            logger.warning("Error: Timeout while trying to connect to the server. Is the IP address correct?");
+        }
+
 
         final TS3Api api = query.getApi();
-        api.login(loadedSettings.getGeneral_loginname(), loadedSettings.getGeneral_loginpassword());
-        api.selectVirtualServerById(loadedSettings.getGeneral_virtualServerID());
 
+        try {
+            api.login(loadedSettings.getGeneral_loginname(), loadedSettings.getGeneral_loginpassword());
+        }
+        catch (Exception ex) {
+            logger.warning("Error: Cannot log in. Check your login data.");
+            return;
+        }
+
+        try {
+            api.selectVirtualServerById(loadedSettings.getGeneral_virtualServerID());
+        }
+        catch (Exception ex) {
+            logger.warning("Error: Wrong virtual server ID. Cannot connect. Default ID is 1");
+            return;
+        }
         final int thisBotID = api.whoAmI().getId();
 
         if (api.getClientInfo(thisBotID).getChannelId() != loadedSettings.getGeneral_joinChannel()) {
