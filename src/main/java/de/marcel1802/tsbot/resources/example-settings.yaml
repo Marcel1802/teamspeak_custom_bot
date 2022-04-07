@@ -11,15 +11,18 @@ moveDefault_AFKChannelID: 2
 moveDefault_moveTime: 30
 moveDefault_mode: MESSAGE
 moveDefault_message:  You got moved due to inactivity.
+moveDefault_logging: true
 
 notifyComplaints_enabled: true
 notifyComplaints_adminGroup: 6
 notifyComplaints_mode: POKE
 notifyComplaints_message: There are entries on the complaints list!
+notifyComplaints_logging: true
 
 defaultNicknameCheck_enabled: true
 defaultNicknameCheck_mode: KICK
 defaultNicknameCheck_message: Please don't use the default name, choose another one.
+defaultNicknameCheck_logging: true
 
 versionWarner_enabled: true
 versionWarner_warningVersions:
@@ -31,6 +34,7 @@ versionWarner_warnMessage: You are using an outdated version of the TeamSpeak cl
 versionWarner_kickVersions:
     - "3.3.2 [Build: 1566767614]"
 versionWarner_kickMessage: Your TeamSpeak client is VERY outdated. Please update your client immediately.
+versionWarner_logging: true
 
 countryList_enabled: false
 countryList_mode: 0
@@ -47,3 +51,4 @@ countryList_blacklist:
     - "CN"
     - "HK"
 countryList_blacklistKickMessage: Your country is blacklisted on this server.
+countryList_logging: true
