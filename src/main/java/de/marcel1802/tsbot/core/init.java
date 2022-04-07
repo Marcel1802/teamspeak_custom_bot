@@ -11,7 +11,13 @@ import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
 import com.github.theholywaffle.teamspeak3.api.event.TS3EventAdapter;
 import com.github.theholywaffle.teamspeak3.api.event.TS3EventType;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -21,15 +27,52 @@ public class init {
 
     public static void main(String[] args) {
 
+        if (!checkConfigExist()) return;
+
         settingsAsClass settingsObj = loadSettings();
 
         if (settingsObj == null) {
-            System.out.println("Config error");
+            System.out.println("Config error. The format does not fit.");
         }
         else {
             startTeamspeakBot(settingsObj);
         }
 
+    }
+
+    public static boolean checkConfigExist() {
+        Path p = Path.of("settings.yaml");
+        Path defaultSettingsPath = Path.of("src/main/java/de/marcel1802/tsbot/resources/example-settings.yaml");
+
+        if (Files.exists(p)) {
+            return true;
+        }
+        else {
+            try {
+                Files.createFile(p);
+            }
+            catch (Exception ex) {
+                System.out.println("Config file cannot be created.");
+            }
+
+            try (BufferedReader br = new BufferedReader(Files.newBufferedReader(defaultSettingsPath));
+                 BufferedWriter bw = new BufferedWriter(Files.newBufferedWriter(p))) {
+
+                System.out.println("The config file does not exist. Config created. Please adjust the settings and restart the bot.");
+
+                String line;
+
+                while ((line = br.readLine()) != null) {
+                    bw.write(line+"\n");
+                }
+
+                return false;
+            }
+            catch (Exception ex) {
+                System.out.println("Config file created. Cannot copy default settings.");
+                return false;
+            }
+        }
     }
 
     public static settingsAsClass loadSettings() {
@@ -39,7 +82,6 @@ public class init {
             return om.readValue(file, settingsAsClass.class);
         }
         catch(Exception ex) {
-            ex.printStackTrace();
             return null;
         }
     }
@@ -130,6 +172,7 @@ public class init {
                     }
 
                 }
+
             }
 
             @Override
