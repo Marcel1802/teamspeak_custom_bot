@@ -46,6 +46,35 @@ public class settingsAsClass {
     private String      countryList_blacklistKickMessage;
     private boolean     countryList_logging;
 
+    private boolean myTeamSpeakGroup_enable;
+
+    public boolean isMyTeamSpeakGroup_enable() {
+        return myTeamSpeakGroup_enable;
+    }
+
+    public void setMyTeamSpeakGroup_enable(boolean myTeamSpeakGroup_enable) {
+        this.myTeamSpeakGroup_enable = myTeamSpeakGroup_enable;
+    }
+
+    public String getMyTeamSpeakGroup_group() {
+        return myTeamSpeakGroup_group;
+    }
+
+    public void setMyTeamSpeakGroup_group(String myTeamSpeakGroup_group) {
+        this.myTeamSpeakGroup_group = myTeamSpeakGroup_group;
+    }
+
+    public boolean isMyTeamSpeakGroup_logging() {
+        return myTeamSpeakGroup_logging;
+    }
+
+    public void setMyTeamSpeakGroup_logging(boolean myTeamSpeakGroup_logging) {
+        this.myTeamSpeakGroup_logging = myTeamSpeakGroup_logging;
+    }
+
+    private String myTeamSpeakGroup_group;// String since the group list is a string array
+    private boolean myTeamSpeakGroup_logging;
+
     public boolean isMoveDefault_logging() {
         return moveDefault_logging;
     }
@@ -224,13 +253,16 @@ public class settingsAsClass {
                 ", countryList_blacklist=" + countryList_blacklist +
                 ", countryList_blacklistKickMessage='" + countryList_blacklistKickMessage + '\'' +
                 ", countryList_logging=" + countryList_logging +
+                ", myTeamSpeakGroup_enable=" + myTeamSpeakGroup_enable +
+                ", myTeamSpeakGroup_group='" + myTeamSpeakGroup_group + '\'' +
+                ", myTeamSpeakGroup_logging=" + myTeamSpeakGroup_logging +
                 ", versionWarner_warnMethod=" + versionWarner_warnMethod +
                 ", versionWarner_kickVersions=" + versionWarner_kickVersions +
                 ", versionWarner_kickMessage='" + versionWarner_kickMessage + '\'' +
                 '}';
     }
 
-    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, BotAction moveDefault_mode, String moveDefault_message, boolean moveDefault_logging, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, BotAction notifyComplaints_mode, String notifyComplaints_message, boolean notifyComplaints_logging, boolean defaultNicknameCheck_enabled, BotAction defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean defaultNicknameCheck_logging, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, boolean versionWarner_logging, boolean countryList_enabled, int countryList_mode, Set<String> countryList_whitelist, String countryList_whitelistKickMessage, Set<String> countryList_blacklist, String countryList_blacklistKickMessage, boolean countryList_logging, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
+    public settingsAsClass(String general_ip, int general_virtualServerID, String general_loginname, String general_loginpassword, String general_displayname, int general_joinChannel, boolean moveDefault_enabled, int moveDefault_defaultChannelID, int moveDefault_AFKChannelID, int moveDefault_moveTime, BotAction moveDefault_mode, String moveDefault_message, boolean moveDefault_logging, boolean notifyComplaints_enabled, int notifyComplaints_adminGroup, BotAction notifyComplaints_mode, String notifyComplaints_message, boolean notifyComplaints_logging, boolean defaultNicknameCheck_enabled, BotAction defaultNicknameCheck_mode, String defaultNicknameCheck_message, boolean defaultNicknameCheck_logging, boolean versionWarner_enabled, Set<String> versionWarner_warningVersions, String versionWarner_warnMessage, boolean versionWarner_logging, boolean countryList_enabled, int countryList_mode, Set<String> countryList_whitelist, String countryList_whitelistKickMessage, Set<String> countryList_blacklist, String countryList_blacklistKickMessage, boolean countryList_logging, boolean myTeamSpeakGroup_enable, String myTeamSpeakGroup_group, boolean myTeamSpeakGroup_logging, int versionWarner_warnMethod, Set<String> versionWarner_kickVersions, String versionWarner_kickMessage) {
         this.general_ip = general_ip;
         this.general_virtualServerID = general_virtualServerID;
         this.general_loginname = general_loginname;
@@ -264,6 +296,9 @@ public class settingsAsClass {
         this.countryList_blacklist = countryList_blacklist;
         this.countryList_blacklistKickMessage = countryList_blacklistKickMessage;
         this.countryList_logging = countryList_logging;
+        this.myTeamSpeakGroup_enable = myTeamSpeakGroup_enable;
+        this.myTeamSpeakGroup_group = myTeamSpeakGroup_group;
+        this.myTeamSpeakGroup_logging = myTeamSpeakGroup_logging;
         this.versionWarner_warnMethod = versionWarner_warnMethod;
         this.versionWarner_kickVersions = versionWarner_kickVersions;
         this.versionWarner_kickMessage = versionWarner_kickMessage;

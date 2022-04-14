@@ -52,3 +52,7 @@ countryList_blacklist:
     - "HK"
 countryList_blacklistKickMessage: Your country is blacklisted on this server.
 countryList_logging: true
+
+myTeamSpeakGroup_enable: true
+myTeamSpeakGroup_group: 123
+myTeamSpeakGroup_logging: true

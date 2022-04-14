@@ -212,11 +212,26 @@ public class init {
 
                 }
 
+                if (loadedSettings.isMyTeamSpeakGroup_enable()) {
 
+                    String[] arr = e.getClientServerGroups().split(",");
+                    boolean hasGroup = false;
+                    for (String elem : arr) {
+                        if (elem.equals(loadedSettings.getMyTeamSpeakGroup_group())) {
+                            hasGroup = true;
+                            break;
+                        }
+                    }
 
-                testing(api, e);
-
-
+                    if (!api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && !hasGroup) {
+                        api.addClientToServerGroup(Integer.parseInt(loadedSettings.getMyTeamSpeakGroup_group()), e.getClientDatabaseId());
+                        if (loadedSettings.isMyTeamSpeakGroup_logging()) logger.info("MyTsGroup | Added group to " + e.getClientNickname());
+                    }
+                    else if (api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && hasGroup) {
+                        api.removeClientFromServerGroup(Integer.parseInt(loadedSettings.getMyTeamSpeakGroup_group()), e.getClientDatabaseId());
+                        if (loadedSettings.isMyTeamSpeakGroup_logging()) logger.info("MyTsGroup | Removed group from " + e.getClientNickname());
+                    }
+                }
             }
 
             @Override
@@ -258,26 +273,6 @@ public class init {
                 break;
             }
 
-        }
-    }
-
-    static void testing(TS3Api api, ClientJoinEvent e) {
-
-        String[] arr = e.getClientServerGroups().split(",");
-        String myTsGroup = "11";
-        boolean hasGroup = false;
-        for (String elem : arr) {
-            if (elem.equals(myTsGroup)) {
-                hasGroup = true;
-                break;
-            }
-        }
-
-        if (!api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && !hasGroup) {
-            api.addClientToServerGroup(Integer.parseInt(myTsGroup), e.getClientDatabaseId());
-        }
-        else if (api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && hasGroup) {
-            api.removeClientFromServerGroup(Integer.parseInt(myTsGroup), e.getClientDatabaseId());
         }
     }
 }
