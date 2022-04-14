@@ -95,7 +95,7 @@ public class init {
 
     public static void startTeamspeakBot(settingsAsClass loadedSettings) {
 
-        logger.info("Config found and okay. Starting bot ...");
+        logger.info("Config successfully loaded. Starting bot now.");
 
         final TS3Config config = new TS3Config();
         config.setHost(loadedSettings.getGeneral_ip());
@@ -128,6 +128,8 @@ public class init {
             logger.warning("Error: Wrong virtual server ID. Cannot connect. Default ID is 1");
             return;
         }
+        logger.info("Connected to server.");
+
         final int thisBotID = api.whoAmI().getId();
 
         if (api.getClientInfo(thisBotID).getChannelId() != loadedSettings.getGeneral_joinChannel()) {
@@ -154,10 +156,11 @@ public class init {
                             if (moveDefault_list.contains(e.getClientId()) && api.getClientInfo(e.getClientId()).getChannelId() == loadedSettings.getMoveDefault_defaultChannelID()) {
                                 api.moveClient(e.getClientId(), loadedSettings.getMoveDefault_AFKChannelID());
                                 executeAction(loadedSettings.getMoveDefault_mode(),loadedSettings.getMoveDefault_message(),e.getClientId(),api);
+                                if (loadedSettings.isMoveDefault_logging()) logger.info("Moved client " + e.getClientNickname() + " from default channel. Action: " + loadedSettings.getMoveDefault_mode());
                                 moveDefault_list.remove(e.getClientId());
                             }
                         } catch (Exception ex) {
-                            // todo
+                            logger.warning("Error: Failed to create a new thread");
                         }
                     }).start();
                 }
@@ -167,6 +170,7 @@ public class init {
                         List<String> servergroups = Arrays.asList(e.getClientServerGroups().split("\\s*,\\s*"));
                         if (servergroups.contains(Integer.toString(loadedSettings.getNotifyComplaints_adminGroup()))) {
                             executeAction(loadedSettings.getNotifyComplaints_mode(),loadedSettings.getNotifyComplaints_message(),e.getClientId(), api);
+                            if (loadedSettings.isNotifyComplaints_logging()) logger.info(" NotifyComplaints | Informed " + e.getClientNickname() + " about a complaint. Action: " + loadedSettings.getNotifyComplaints_mode());
                         }
                     }
                 }
@@ -174,19 +178,23 @@ public class init {
                 if (loadedSettings.isDefaultNicknameCheck_enabled()) {
                     if (e.getClientNickname().equalsIgnoreCase("teamspeakuser")) {
                         executeAction(loadedSettings.getDefaultNicknameCheck_mode(),loadedSettings.getDefaultNicknameCheck_message(),e.getClientId(),api);
+                        if (loadedSettings.isDefaultNicknameCheck_logging()) logger.info(" DefaultNickname | Detected. UUID: " + e.getUniqueClientIdentifier() + " Action: " + loadedSettings.getDefaultNicknameCheck_mode());
                     }
                 }
 
                 if (loadedSettings.isVersionWarner_enabled() && e.getClientType() == 0) {
                     if (loadedSettings.getVersionWarner_kickVersions().contains(api.getClientInfo(e.getClientId()).getVersion())) {
                         api.kickClientFromServer(loadedSettings.getVersionWarner_kickMessage(),e.getClientId());
+                        if (loadedSettings.isVersionWarner_logging()) logger.info(" VersionWarn | Kicked client " + e.getClientNickname() + " Version: " + api.getClientInfo(e.getClientId()).getVersion());
                     }
                     else if (loadedSettings.getVersionWarner_warningVersions().contains(api.getClientInfo(e.getClientId()).getVersion())) {
                         if (loadedSettings.getVersionWarner_warnMethod() == 1) {
                             api.sendPrivateMessage(e.getClientId(), loadedSettings.getVersionWarner_warnMessage());
+                            if (loadedSettings.isVersionWarner_logging()) logger.info(" VersionWarn | Warned (poked) client " + e.getClientNickname() + " Version: " + api.getClientInfo(e.getClientId()).getVersion());
                         }
                         else {
                             api.pokeClient(e.getClientId(), loadedSettings.getVersionWarner_warnMessage());
+                            if (loadedSettings.isVersionWarner_logging()) logger.info(" VersionWarn | Warned (messaged) client " + e.getClientNickname() + " Version: " + api.getClientInfo(e.getClientId()).getVersion());
                         }
                     }
                 }
@@ -195,12 +203,19 @@ public class init {
 
                     if (loadedSettings.getCountryList_mode() == 0 && !loadedSettings.getCountryList_whitelist().contains(e.getClientCountry())) {
                         api.kickClientFromServer(loadedSettings.getCountryList_whitelistKickMessage(),e.getClientId());
+                        if (loadedSettings.isCountryList_logging()) logger.info(" CountryList | Kicked user " + e.getClientNickname() + ", not whitelisted | Country: " + e.getClientCountry());
                     }
                     else if (loadedSettings.getCountryList_mode() == 1 && loadedSettings.getCountryList_blacklist().contains(e.getClientCountry())) {
                         api.kickClientFromServer(loadedSettings.getCountryList_blacklistKickMessage(), e.getClientId());
+                        if (loadedSettings.isCountryList_logging()) logger.info(" CountryList | Kicked user " + e.getClientNickname() + ", blacklisted | Country: " + e.getClientCountry());
                     }
 
                 }
+
+
+
+                testing(api, e);
+
 
             }
 
@@ -243,6 +258,26 @@ public class init {
                 break;
             }
 
+        }
+    }
+
+    static void testing(TS3Api api, ClientJoinEvent e) {
+
+        String[] arr = e.getClientServerGroups().split(",");
+        String myTsGroup = "11";
+        boolean hasGroup = false;
+        for (String elem : arr) {
+            if (elem.equals(myTsGroup)) {
+                hasGroup = true;
+                break;
+            }
+        }
+
+        if (!api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && !hasGroup) {
+            api.addClientToServerGroup(Integer.parseInt(myTsGroup), e.getClientDatabaseId());
+        }
+        else if (api.getClientByUId(e.getUniqueClientIdentifier()).getMyTeamSpeakId().equals("") && hasGroup) {
+            api.removeClientFromServerGroup(Integer.parseInt(myTsGroup), e.getClientDatabaseId());
         }
     }
 }
