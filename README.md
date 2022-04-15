@@ -50,6 +50,10 @@
         - HK
     countryList_blacklistKickMessage: Your country is blacklisted on this server.
 
+    myTeamSpeakGroup_enable: true
+    myTeamSpeakGroup_group: 11
+    myTeamSpeakGroup_logging: true
+
 ## Modules
 
 moveDefault: Moves a client after a specific time if the user is idling in the default channel
@@ -62,7 +66,7 @@ versionWarner: Warns / kicks clients if their TeamSpeak client version is listed
 
 countryList: Whitelist / blacklist for countries, kick on connect (Use ISO-Codes for the country names > https://en.wikipedia.org/wiki/ISO_3166-1)
 
-
+myTeamSpeakGroup: adds / removes a specific group if the user has a myTeamSpeak account connected
 
 ## Some setting explainations
 
