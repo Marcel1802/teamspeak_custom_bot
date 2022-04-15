@@ -39,9 +39,10 @@ public class init {
 
         if (settingsObj == null) {
             logger.warning("Config error. The format does not fit.");
+            System.out.println();
         }
         else {
-            startTeamspeakBot(settingsObj);
+                startTeamspeakBot(settingsObj);
         }
 
     }
@@ -248,31 +249,15 @@ public class init {
                 }
             }
         });
-
     }
 
     public static void executeAction(BotAction botAction, String message, int clientID, TS3Api apiObj) {
         switch (botAction) {
-
-            case NONE: {
-                break;
+            case NONE -> {
             }
-
-            case MESSAGE: {
-                apiObj.sendPrivateMessage(clientID,message);
-                break;
-            }
-
-            case POKE: {
-                apiObj.pokeClient(clientID, message);
-                break;
-            }
-
-            case KICK: {
-                apiObj.kickClientFromServer(message, clientID);
-                break;
-            }
-
+            case MESSAGE -> apiObj.sendPrivateMessage(clientID, message);
+            case POKE -> apiObj.pokeClient(clientID, message);
+            case KICK -> apiObj.kickClientFromServer(message, clientID);
         }
     }
 }
